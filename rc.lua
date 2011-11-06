@@ -10,15 +10,12 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
--- widget library
-require("wicked")
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "x-terminal-emulator"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -52,7 +49,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2 }, s, layouts[1])
+    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, layouts[1])
 end
 -- }}}
 
@@ -78,9 +75,6 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
-
--- Create batterywidget -tojuhaka --
-batterybox = ({widget type = "textbox", name = "battery", align = "left"})
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
