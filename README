@@ -1,1 +1,9 @@
 This is a configuration setup for awesome. There is everything I need for my desktop environment.
+
+Requirements
+============
+
+- Remember to make a symbolic link between system folder to our folder::
+    sudo ln -s ~/.config/awesome/themes /usr/share/awesome/themes
+
+- install Vicious: http://awesome.naquadah.org/wiki/Vicious
