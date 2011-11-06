@@ -10,6 +10,7 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Mywidgets
 require("mywidgets")
 
 -- {{{ Variable definitions
@@ -17,8 +18,8 @@ require("mywidgets")
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
-editor = os.getenv("EDITOR") or "editor"
+terminal = "terminator"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 
@@ -28,6 +29,7 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = mywidgets.modkey
+netwidget = mywidgets.netwidget
 debug = {text = modkey}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -45,10 +47,14 @@ layouts =
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
+tags = {
+    names = {"main", "www", "skype", "irssi"},
+    layouts = {layouts[2], layouts[2], layouts[2], layouts[2]}
+}
+
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6 }, s, layouts[1])
+    tags[s] = awful.tag(tags.names, s, tags.layouts)
 end
 -- }}}
 
@@ -154,6 +160,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+        netwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
