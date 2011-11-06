@@ -30,6 +30,8 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = mywidgets.modkey
 netwidget = mywidgets.netwidget
+cpuwidget = mywidgets.cpuwidget
+memwidget = mywidgets.memwidget
 debug = {text = modkey}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -161,6 +163,8 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         netwidget,
+        cpuwidget,
+        memwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
