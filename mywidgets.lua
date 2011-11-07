@@ -15,6 +15,9 @@ vicious.register(netwidget, vicious.widgets.net,
 cpuwidget = widget({ type = "textbox" })
 vicious.register(cpuwidget, vicious.widgets.cpu, 'C: <span color="#00FF00">$1% </span>')
 
+--cpuwidget with graph
+--
+
 -- mem widget
 memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, 'M: <span color="#33FFCC">$1% </span>')
