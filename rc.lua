@@ -10,8 +10,8 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
--- Mywidgets
-require("mywidgets")
+-- myscripts
+require("myscripts")
 
 --Mytheme
 require("mytheme")
@@ -30,10 +30,10 @@ editor_cmd = terminal .. " -e " .. editor
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = mywidgets.modkey
-netwidget = mywidgets.netwidget
-cpuwidget = mywidgets.cpuwidget
-memwidget = mywidgets.memwidget
+modkey = myscripts.modkey
+netwidget = myscripts.netwidget
+cpuwidget = myscripts.cpuwidget
+memwidget = myscripts.memwidget
 debug = {text = "asdf"}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -57,11 +57,13 @@ tags = {
 }
 
 -- autostart some programs for different screens
-mywidgets.autostart(tags.names)
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layouts)
+
+    -- autostart some programs
+    myscripts.autostart(s)
 end
 -- }}}
 
