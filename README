@@ -7,3 +7,4 @@ Requirements
     sudo ln -s ~/.config/awesome/themes /usr/share/awesome/themes
 
 - install Vicious: http://awesome.naquadah.org/wiki/Vicious
+- install dmenu

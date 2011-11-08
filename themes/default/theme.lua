@@ -2,6 +2,7 @@
 -- Default awesome theme --
 ---------------------------
 
+my_path = "/home/tojuhaka/.config/"
 theme = {}
 
 theme.font          = "sans 8"
@@ -74,7 +75,7 @@ theme.titlebar_maximized_button_normal_active = "/usr/share/awesome/themes/defau
 theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/default/titlebar/maximized_focus_active.png"
 
 -- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/dark.jpg" }
+theme.wallpaper_cmd = { "awsetbg "..my_path.."awesome/themes/default/dark.jpg" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"

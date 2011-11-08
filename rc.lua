@@ -34,7 +34,7 @@ modkey = mywidgets.modkey
 netwidget = mywidgets.netwidget
 cpuwidget = mywidgets.cpuwidget
 memwidget = mywidgets.memwidget
-debug = {text = modkey}
+debug = {text = "asdf"}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -52,9 +52,12 @@ layouts =
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names = {"main", "www", "skype", "irssi"},
+    names = {"main", "web", "social", "comp"},
     layouts = {layouts[2], layouts[2], layouts[2], layouts[2]}
 }
+
+-- autostart some programs for different screens
+mywidgets.autostart(tags.names)
 
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
@@ -90,6 +93,7 @@ mysystray = widget({ type = "systray" })
 
 -- Create a wibox for each screen and add it
 mywibox = {}
+mywiboxbot = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
@@ -154,6 +158,8 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
+
+    mywiboxbot[s] = awful.wibox({position= "bottom", screen = s})
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -231,7 +237,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
+    awful.key({ modkey },            "r",     function () awful.util.spawn( "dmenu_run -nb '#000000' -nf '#ffffff' -sb '#7e0000'" ) end),
+
 
     awful.key({ modkey }, "x",
               function ()

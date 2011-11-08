@@ -22,4 +22,13 @@ vicious.register(cpuwidget, vicious.widgets.cpu, 'C: <span color="#00FF00">$1% <
 memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, 'M: <span color="#33FFCC">$1% </span>')
 
+-- autostart programs
+autostart = function(names, commands) 
+    for i = 1, #tags.names do
+        debug.text = tags.names[i]
+    end
+end
+
+-- -
+
 
