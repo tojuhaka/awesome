@@ -39,10 +39,6 @@ debug = {text = "asdf"}
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max
@@ -52,8 +48,8 @@ layouts =
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-    names = {"main", "web", "social", "comp"},
-    layouts = {layouts[2], layouts[2], layouts[2], layouts[2]}
+    names = {"main ", "web ", "social ", "comp "},
+    layouts = {layouts[1], layouts[1], layouts[1], layouts[1]}
 }
 
 -- autostart some programs for different screens
@@ -63,7 +59,7 @@ for s = 1, screen.count() do
     tags[s] = awful.tag(tags.names, s, tags.layouts)
 
     -- autostart some programs
-    myscripts.autostart(s)
+    -- myscripts.autostart(s)
 end
 -- }}}
 
@@ -161,7 +157,6 @@ for s = 1, screen.count() do
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
 
-    mywiboxbot[s] = awful.wibox({position= "bottom", screen = s})
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
