@@ -34,6 +34,8 @@ modkey = myscripts.modkey
 netwidget = myscripts.netwidget
 cpuwidget = myscripts.cpuwidget
 memwidget = myscripts.memwidget
+weatherwidget = myscripts.weatherwidget
+batterywidget = myscripts.mybattmon
 debug = {text = "asdf"}
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -58,8 +60,7 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layouts)
 
-    -- autostart some programs
-    -- myscripts.autostart(s)
+    myscripts.autostart(s)
 end
 -- }}}
 
@@ -170,6 +171,8 @@ for s = 1, screen.count() do
         netwidget,
         cpuwidget,
         memwidget,
+        weatherwidget,
+        batterywidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft

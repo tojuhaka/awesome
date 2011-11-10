@@ -8,3 +8,9 @@ Requirements
 
 - install Vicious: http://awesome.naquadah.org/wiki/Vicious
 - install dmenu
+- install naughty
+- install weather-util
+- install g++
+- install powersave (manually)
+- install build-essential
+- install libdbus-glib-1-dev
