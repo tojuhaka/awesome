@@ -4,6 +4,7 @@ require("vicious")
 require("awful")
 
 modkey = "Mod4"
+ENABLE_CONKY = false
 HOME = os.getenv("HOME")
 -- display widget for down/up network
 netwidget = widget({ type = "textbox" })
@@ -38,7 +39,9 @@ end
 
 -- autostart programs
 function autostart (screen)
-    awful.util.spawn(HOME .. "/.config/awesome/utility/conky_start.sh")
+    if ENABLE_CONKY then    
+        awful.util.spawn(HOME .. "/.config/awesome/utility/conky_start.sh")
+    end
 end
 
 -- function to determine coldness
