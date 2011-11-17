@@ -10,7 +10,10 @@ Requirements
 - install dmenu
 - install naughty
 - install weather-util
+- install feh
+- install curl
 - install g++
 - install powersave (manually)
 - install build-essential
 - install libdbus-glib-1-dev
+- install NetworkManager (manually nm-applet)

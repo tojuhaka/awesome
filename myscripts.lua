@@ -42,6 +42,7 @@ function autostart (screen)
     if ENABLE_CONKY then    
         awful.util.spawn(HOME .. "/.config/awesome/utility/conky_start.sh")
     end
+    run_once('nm-applet')
 end
 
 -- function to determine coldness
