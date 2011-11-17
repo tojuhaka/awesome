@@ -37,7 +37,7 @@ netwidget = myscripts.netwidget
 cpuwidget = myscripts.cpuwidget
 memwidget = myscripts.memwidget
 weatherwidget = myscripts.weatherwidget
-batterywidget = myscripts.mybattmon
+batwidget = myscripts.batwidget
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -173,7 +173,7 @@ for s = 1, screen.count() do
         cpuwidget,
         memwidget,
         weatherwidget,
-        batterywidget,
+        batwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft

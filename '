@@ -120,5 +120,5 @@ function read_acpi()
    value = string.gmatch(output, "(%d+)%%")
    return {value}
 end
-wicked.register(batwidget, read_acpi, 'B: $1% ', 60)
+wicked.register(batwidget, read_acpi, '$1% ', 60)
 wicked.update(batwidget, nil)
