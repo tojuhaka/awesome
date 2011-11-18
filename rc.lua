@@ -31,13 +31,14 @@ editor_cmd = terminal .. " -e " .. editor
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 
-debug = {text = "asdf"}
+debug = {text = myscripts.debug_text }
 modkey = myscripts.modkey
 netwidget = myscripts.netwidget
 cpuwidget = myscripts.cpuwidget
 memwidget = myscripts.memwidget
 weatherwidget = myscripts.weatherwidget
 batwidget = myscripts.batwidget
+launchbar = myscripts.launchbar
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -93,6 +94,7 @@ mysystray = widget({ type = "systray" })
 
 -- Create a wibox for each screen and add it
 mywibox = {}
+mywibox2 = {}
 mywiboxbot = {}
 mypromptbox = {}
 mylayoutbox = {}
@@ -159,12 +161,12 @@ for s = 1, screen.count() do
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
 
-    -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
+            launchbar,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],

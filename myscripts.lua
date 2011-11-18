@@ -25,6 +25,14 @@ memwidget = widget({ type = "textbox" })
 vicious.register(memwidget, vicious.widgets.mem, 'Mem: <span>$1%  </span>')
 
 
+ -- debug function
+function debug(str)
+
+ local test = io.output("/home/tojuhaka/.config/awesome/debug.txt")
+ test:write(tostring(str))
+ test:close()
+end
+    
 -- run only once
 function run_once(command)
     if not command then
@@ -113,6 +121,7 @@ end
 batwidget =
    widget({type = 'textbox', name = 'batwidget', align = 'right'})
 function read_acpi()
+   debug_text = "MOIKAIKILLE" 
    local fh = io.popen('acpi')
    local value
    output = fh:read("*a")
@@ -122,3 +131,49 @@ function read_acpi()
 end
 wicked.register(batwidget, read_acpi, 'B: $1% ', 60)
 wicked.update(batwidget, nil)
+
+
+ -- Quick launch bar widget BEGINS
+ function getValue(t, key)
+    _, _, res = string.find(t, key .. " *= *([^%c]+)%c")
+    return res
+ end
+ 
+ function split (s,t)
+    local l = {n=0}
+    local f = function (s)
+        l.n = l.n + 1
+        l[l.n] = s
+         end
+    local p = "%s*(.-)%s*"..t.."%s*"
+    s = string.gsub(s,p,f)
+    l.n = l.n + 1
+    return l
+ end
+ 
+ launchbar = { layout = awful.widget.layout.vertical.topright }
+ filedir = "/home/tojuhaka/.config/awesome/launchbar/" -- Specify your folder with shortcuts here
+ test = io.popen("ls " .. filedir .. "*.desktop")
+ --test_text = test:read("*all")
+ --files = split(io.popen("ls " .. filedir .. "*.desktop"):read("*all"),"\n")
+ counter = 0
+ for i in test:lines() do
+    local t = io.open(i):read("*all")
+    launchbar[counter] = { image = image(getValue(t,"Icon")),
+                     command = getValue(t,"Exec"),
+                     tooltip = getValue(t,"Name"),
+                     position = tonumber(getValue(t,"Position")) or 255 }
+    counter = counter + 1
+ end
+ table.sort(launchbar, function(a,b) return a.position < b.position end)
+ for i = 0, counter-1 do
+    local txt = launchbar[i].tooltip
+    launchbar[i] = awful.widget.launcher(launchbar[i])
+    --local tt = awful.tooltip ({ objects = { launchbar[i] } })
+    --debug(tt)
+    --tt:set_text (txt)
+    --tt:set_timeout (0)
+ end
+ 
+ -- Quick launch bar widget ENDS
+ 
